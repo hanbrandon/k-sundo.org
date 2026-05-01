@@ -30,9 +30,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-black text-white pt-32 pb-10 px-6 md:px-12" id="main-footer">
+    <footer className="bg-black text-white pt-20 pb-12 px-6 md:px-12" id="main-footer">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col lg:flex-row justify-between gap-20 mb-32">
+        <div className="flex flex-col lg:flex-row justify-between gap-20 mb-16">
           <div className="max-w-md">
             <h2 className="text-3xl md:text-4xl font-serif mb-10 leading-tight">
               See how we can help your vitality grow. Get in touch today.
@@ -43,14 +43,6 @@ export default function Footer() {
             >
               Let's Talk <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </Link>
-            <div className="mt-10 space-y-2">
-              <p className="text-[9px] uppercase tracking-widest text-white/30 font-mono">
-                © {new Date().getFullYear()} Three Pillars Foundation. All rights reserved.
-              </p>
-              <p className="text-[9px] uppercase tracking-widest text-white/20 font-mono">
-                K-Sundo™ is a trademark of Three Pillars Foundation. All rights reserved.
-              </p>
-            </div>
           </div>
 
           <div className="flex flex-col gap-8">
@@ -65,6 +57,24 @@ export default function Footer() {
           </div>
         </div>
 
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col gap-2">
+            <p className="text-[9px] uppercase tracking-widest text-white/30 font-mono text-center md:text-left">
+              © {new Date().getFullYear()} Three Pillars Foundation. All rights reserved.
+            </p>
+            <p className="text-[9px] uppercase tracking-widest text-white/20 font-mono text-center md:text-left">
+              K-Sundo™ is a trademark of Three Pillars Foundation. All rights reserved.
+            </p>
+          </div>
+          <a 
+            href="https://gawoori.com" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-[9px] uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors font-mono"
+          >
+            Website Developed by GAWOORI.COM
+          </a>
+        </div>
       </div>
     </footer>
   );

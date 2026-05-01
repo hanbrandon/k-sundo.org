@@ -22,7 +22,6 @@ import SolutionCard from '@/components/common/SolutionCard';
 import Link from 'next/link';
 import ImageSlideshow from '@/components/common/ImageSlideshow';
 
-
 export default function Home() {
     const [activePrinciple, setActivePrinciple] = useState<number | null>(0);
     const [activeTestimonial, setActiveTestimonial] = useState(0);
@@ -135,12 +134,13 @@ export default function Home() {
         <div className="w-full bg-white text-black" id="home-page">
             {/* Hero Section */}
             <section
-                className="relative h-screen w-full flex flex-col justify-end overflow-hidden px-6 md:px-12"
+                className="relative h-[75vh] md:h-screen w-full flex flex-col justify-end overflow-hidden px-6 md:px-12"
                 id="hero"
             >
                 <div className="absolute inset-0 z-0 scale-105">
                     <ImageSlideshow
                         images={[
+                            '/hero/hero-0.png',
                             '/hero/hero-1.png',
                             '/hero/hero-2.png',
                             '/hero/hero-3.png',
@@ -209,7 +209,7 @@ export default function Home() {
                     </div>
 
                     {/* Right Column: Sticky Accordion */}
-                    <div className="md:w-[40%] flex flex-col pt-32">
+                    <div className="md:w-[40%] flex flex-col pt-8 md:pt-32">
                         <div className="sticky top-32 flex flex-col">
                             <div className="flex flex-col">
                                 {programBenefits.map((item, idx) => (
@@ -320,7 +320,7 @@ export default function Home() {
                     border={false}
                 />
 
-                <div className="flex flex-col gap-16">
+                <div className="flex flex-col gap-8 md:gap-16">
                     {galleryItems.map((item, idx) => (
                         <motion.div
                             key={idx}
@@ -334,10 +334,10 @@ export default function Home() {
                                 <span className="text-[10px] uppercase tracking-[0.4em] mb-2 opacity-70 font-mono">
                                     {item.subtitle}
                                 </span>
-                                <h3 className="text-3xl md:text-5xl font-serif mb-6">
+                                <h3 className="text-3xl md:text-5xl font-serif mb-3 md:mb-6">
                                     {item.title}
                                 </h3>
-                                <div className="space-y-2 mb-8">
+                                <div className="space-y-1 md:space-y-2 mb-4 md:mb-8">
                                     <p className="text-[11px] md:text-xs uppercase tracking-widest font-mono opacity-60">
                                         {item.address}
                                     </p>
@@ -345,21 +345,27 @@ export default function Home() {
                                         {item.schedule}
                                     </p>
                                 </div>
-                                <div className="flex gap-4 text-[9px] uppercase tracking-[0.3em] font-mono opacity-50 mb-10">
+                                <div className="flex gap-4 text-[9px] uppercase tracking-[0.3em] font-mono opacity-50 mb-6 md:mb-10">
                                     {item.tags.map((tag) => (
                                         <span key={tag}>{tag}</span>
                                     ))}
                                 </div>
-                                <Link
-                                    href="/contact"
-                                    className="px-8 py-3 border border-white/40 text-[9px] uppercase tracking-widest hover:bg-white hover:text-black transition-all rounded-sm"
+                                <motion.div
+                                    whileHover={{ y: -4 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="w-fit"
                                 >
-                                    Join Class{' '}
-                                    <ArrowUpRight
-                                        size={14}
-                                        className="inline ml-1"
-                                    />
-                                </Link>
+                                    <Link
+                                        href="/contact"
+                                        className="px-8 py-3 bg-white text-black text-[9px] uppercase tracking-widest transition-all rounded-sm flex items-center gap-2 group border border-black/5"
+                                    >
+                                        Join Class{' '}
+                                        <ArrowUpRight
+                                            size={14}
+                                            className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                        />
+                                    </Link>
+                                </motion.div>
                             </div>
                         </motion.div>
                     ))}
@@ -394,12 +400,18 @@ export default function Home() {
                                 <li>Full access to Zoom sessions</li>
                                 <li>Direct guidance from instructors</li>
                             </ul>
-                            <Link
-                                href="/contact"
-                                className="w-full py-5 border border-black/20 text-[10px] uppercase tracking-widest font-mono hover:bg-black hover:text-white transition-all text-center rounded-sm"
+                            <motion.div
+                                whileHover={{ y: -4 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full"
                             >
-                                Register Now
-                            </Link>
+                                <Link
+                                    href="/contact"
+                                    className="w-full py-5 bg-black text-white border border-black/5 text-[10px] uppercase tracking-widest font-mono transition-all text-center rounded-sm flex items-center justify-center gap-2 group"
+                                >
+                                    Register Now <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                </Link>
+                            </motion.div>
                         </div>
 
                         {/* Pricing Card 2 */}
@@ -421,12 +433,18 @@ export default function Home() {
                                 <li>Practice from anywhere</li>
                                 <li>Digital training materials</li>
                             </ul>
-                            <Link
-                                href="/contact"
-                                className="w-full py-5 border border-black/20 text-[10px] uppercase tracking-widest font-mono hover:bg-black hover:text-white transition-all text-center rounded-sm"
+                            <motion.div
+                                whileHover={{ y: -4 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full"
                             >
-                                Register Now
-                            </Link>
+                                <Link
+                                    href="/contact"
+                                    className="w-full py-5 bg-black text-white border border-black/5 text-[10px] uppercase tracking-widest font-mono transition-all text-center rounded-sm flex items-center justify-center gap-2 group"
+                                >
+                                    Register Now <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                </Link>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
@@ -524,6 +542,57 @@ export default function Home() {
                     </div>
                 </div>
             </Section>
+
+            {/* CTA Section */}
+            <section
+                id="cta"
+                className="relative py-48 bg-white border-t border-black/10"
+            >
+                <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10 text-center px-6">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-4xl md:text-7xl font-serif mb-10 text-black leading-[1.1]"
+                    >
+                        Ready to Begin Your <br />
+                        <span className="italic">Healing Journey?</span>
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                        className="text-black/50 text-lg md:text-xl max-w-2xl mb-14 font-light leading-relaxed"
+                    >
+                        Whether you seek physical health, mental clarity, or
+                        inner peace, K-Sundo offers a time-tested path. Start
+                        your practice today.
+                    </motion.p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        <motion.div
+                            whileHover={{ y: -4 }}
+                            whileTap={{ scale: 0.97 }}
+                        >
+                            <Link
+                                href="/contact"
+                                className="inline-flex items-center gap-3 px-12 py-5 bg-black text-white border border-black/5 text-[11px] uppercase tracking-[0.3em] font-mono transition-all rounded-sm group"
+                            >
+                                Register for a Class{' '}
+                                <ArrowUpRight
+                                    size={16}
+                                    className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                                />
+                            </Link>
+                        </motion.div>
+                    </motion.div>
+                </div>
+            </section>
         </div>
     );
 }

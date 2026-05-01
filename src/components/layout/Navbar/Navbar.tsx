@@ -5,11 +5,13 @@ import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import FlipLink from '@/components/common/FlipLink';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const hasHero = pathname === '/' || pathname === '/contact';
 
   const navItems = [
     { name: 'Home', id: 'home', path: '/' },
@@ -41,37 +43,45 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-12 py-8 mix-blend-difference text-white" id="main-nav">
+    <nav 
+      className={`absolute top-0 left-0 w-full z-50 flex items-center justify-between px-6 md:px-12 py-8 transition-all duration-500 ${
+        !hasHero ? 'text-black' : 'text-white'
+      }`} 
+      id="main-nav"
+    >
       <Link 
         href="/"
-        className="cursor-pointer group flex items-baseline gap-1" 
+        className="cursor-pointer group flex items-center" 
         id="brand-logo"
       >
-        <span className="text-xl md:text-2xl font-serif font-light tracking-widest hover:opacity-70 transition-opacity uppercase whitespace-nowrap">
-          K-Sundo
-        </span>
+        <img 
+          src={hasHero ? "/logo-white.png" : "/logo-black.png"} 
+          alt="K-Sundo Logo" 
+          className="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"
+        />
       </Link>
 
       {/* Desktop Nav */}
       <div className="hidden md:flex items-center gap-10 lg:gap-14" id="desktop-menu">
         {navItems.map((item) => (
-          <Link
+          <FlipLink
             key={item.id}
             href={item.path}
             onClick={(e) => handleNavClick(e, item)}
             className={`text-[0.875em] leading-[1em] font-mono uppercase tracking-[2px] transition-all ${
               (pathname === item.path || (pathname === '/' && item.id === 'home')) ? 'opacity-100' : 'opacity-50 hover:opacity-100'
             }`}
-            id={`nav-link-${item.id}`}
           >
             {item.name}
-          </Link>
+          </FlipLink>
         ))}
       </div>
 
       <Link 
         href="/contact"
-        className="hidden md:flex items-center gap-2 group text-[0.875em] leading-[1em] font-mono uppercase tracking-[2px] border border-white/30 px-6 py-2.5 rounded-sm hover:bg-white hover:text-black transition-all"
+        className={`hidden md:flex items-center gap-2 group text-[0.875em] leading-[1em] font-mono uppercase tracking-[2px] border px-6 py-2.5 rounded-sm transition-all ${
+          !hasHero ? 'border-black/20 hover:bg-black hover:text-white' : 'border-white/30 hover:bg-white hover:text-black'
+        }`}
       >
         Let's Talk <ArrowUpRight size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
       </Link>
@@ -94,25 +104,32 @@ export default function Navbar() {
             className="fixed inset-0 bg-black text-white p-12 flex flex-col gap-10 items-start justify-center pointer-events-auto"
             id="mobile-menu"
           >
+            {/* Close Button Top Right */}
+            <button 
+              className="absolute top-10 right-10 p-4 opacity-50 hover:opacity-100 transition-opacity"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <X size={32} />
+            </button>
             {navItems.map((item) => (
-              <Link
+              <FlipLink
                 key={item.id}
                 href={item.path}
                 onClick={(e) => handleNavClick(e, item)}
                 className={`text-4xl md:text-6xl font-mono uppercase tracking-[4px] ${
                   pathname === item.path ? 'opacity-100' : 'opacity-40'
                 }`}
-                id={`mobile-nav-link-${item.id}`}
               >
                 {item.name}
-              </Link>
+              </FlipLink>
             ))}
-            <button 
-              className="mt-10 px-8 py-4 border border-white/20 text-sm uppercase tracking-widest"
+            <Link 
+              href="/contact"
               onClick={() => setIsMenuOpen(false)}
+              className="mt-10 px-10 py-4 border border-white/30 text-sm uppercase tracking-widest font-mono flex items-center gap-3 hover:bg-white hover:text-black transition-all rounded-sm"
             >
-              Close Menu
-            </button>
+              Let's Talk <ArrowUpRight size={16} />
+            </Link>
           </motion.div>
         )}
       </AnimatePresence>

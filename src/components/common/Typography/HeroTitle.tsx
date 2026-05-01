@@ -17,7 +17,7 @@ export default function HeroTitle({ children, subtitle, className = "" }: HeroTi
     >
       {subtitle && (
         <div className="flex items-center gap-8 mb-10">
-          <span className="text-[12px] md:text-[14px] uppercase tracking-[0.4em] text-white/80 font-mono font-medium whitespace-nowrap">
+          <span className="text-[12px] md:text-[14px] uppercase tracking-[0.4em] text-white/80 font-mono font-medium leading-relaxed">
             {subtitle}
           </span>
           <div className="h-px w-24 md:w-48 bg-white/30" />
