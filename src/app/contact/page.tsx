@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'motion/react';
-import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ArrowUpRight, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 
 // Components
 import Section from '@/components/layout/Section/Section';
@@ -10,6 +11,52 @@ import HeroTitle from '@/components/common/Typography/HeroTitle';
 import ImageSlideshow from '@/components/common/ImageSlideshow';
 
 export default function ContactPage() {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        interests: [] as string[],
+    });
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    const handleInterestToggle = (item: string) => {
+        setFormData(prev => ({
+            ...prev,
+            interests: prev.interests.includes(item)
+                ? prev.interests.filter(i => i !== item)
+                : [...prev.interests, item]
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('loading');
+
+        try {
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...formData,
+                    message: formData.interests.length > 0 
+                        ? `[Interests: ${formData.interests.join(', ')}]\n\n${formData.message}`
+                        : formData.message
+                }),
+            });
+
+            if (!res.ok) throw new Error('Failed to send');
+            setStatus('success');
+            setFormData({ name: '', email: '', phone: '', message: '', interests: [] });
+            
+            // Reset success message after 5 seconds
+            setTimeout(() => setStatus('idle'), 5000);
+        } catch (err) {
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 5000);
+        }
+    };
+
     return (
         <div className="w-full bg-white text-black" id="contact-page">
             {/* Hero Section */}
@@ -46,7 +93,7 @@ export default function ContactPage() {
 
                         <form
                             className="space-y-10"
-                            onSubmit={(e) => e.preventDefault()}
+                            onSubmit={handleSubmit}
                         >
                             <div className="space-y-2">
                                 <label className="text-[10px] uppercase tracking-[0.3em] font-mono text-black/60">
@@ -57,6 +104,8 @@ export default function ContactPage() {
                                     className="w-full border-b border-black/10 py-4 focus:border-black transition-colors outline-none font-sans text-lg"
                                     placeholder="Your Name"
                                     required
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                 />
                             </div>
 
@@ -69,6 +118,8 @@ export default function ContactPage() {
                                     className="w-full border-b border-black/10 py-4 focus:border-black transition-colors outline-none font-sans text-lg"
                                     placeholder="your@email.com"
                                     required
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 />
                             </div>
 
@@ -93,6 +144,8 @@ export default function ContactPage() {
                                                 <input
                                                     type="checkbox"
                                                     className="hidden peer"
+                                                    checked={formData.interests.includes(item)}
+                                                    onChange={() => handleInterestToggle(item)}
                                                 />
                                                 <div className="w-2 h-2 bg-black scale-0 peer-checked:scale-100 transition-transform" />
                                             </div>
@@ -113,22 +166,59 @@ export default function ContactPage() {
                                     className="w-full border-b border-black/10 py-4 focus:border-black transition-colors outline-none font-sans text-lg resize-none"
                                     placeholder="How can we help you?"
                                     required
+                                    value={formData.message}
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 />
                             </div>
 
                             <div className="flex flex-col gap-8 pt-4">
                                 <div className="flex flex-col gap-4">
                                     <motion.button 
-                                        whileHover={{ y: -4 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="bg-black text-white border border-black/5 px-12 py-5 text-[11px] uppercase tracking-[0.3em] font-mono transition-all flex items-center gap-4 group rounded-sm justify-center md:justify-start w-full md:w-fit"
+                                        whileHover={status === 'idle' ? { y: -4 } : {}}
+                                        whileTap={status === 'idle' ? { scale: 0.98 } : {}}
+                                        disabled={status !== 'idle'}
+                                        className="bg-black text-white border border-black/5 px-12 py-5 text-[11px] uppercase tracking-[0.3em] font-mono transition-all flex items-center gap-4 group rounded-sm justify-center md:justify-start w-full md:w-fit disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        Send Message{' '}
-                                        <ArrowUpRight
-                                            size={16}
-                                            className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                                        />
+                                        {status === 'loading' ? (
+                                            <>Sending <Loader2 size={16} className="animate-spin" /></>
+                                        ) : status === 'success' ? (
+                                            <>Sent Successfully <CheckCircle2 size={16} /></>
+                                        ) : status === 'error' ? (
+                                            <>Error Sending <AlertCircle size={16} /></>
+                                        ) : (
+                                            <>
+                                                Send Message{' '}
+                                                <ArrowUpRight
+                                                    size={16}
+                                                    className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                                                />
+                                            </>
+                                        )}
                                     </motion.button>
+                                    
+                                    <AnimatePresence>
+                                        {status === 'success' && (
+                                            <motion.p 
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0 }}
+                                                className="text-xs text-green-600 font-mono"
+                                            >
+                                                Thank you! We'll get back to you soon.
+                                            </motion.p>
+                                        )}
+                                        {status === 'error' && (
+                                            <motion.p 
+                                                initial={{ opacity: 0, y: 10 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                exit={{ opacity: 0 }}
+                                                className="text-xs text-red-600 font-mono"
+                                            >
+                                                Something went wrong. Please try again or text us.
+                                            </motion.p>
+                                        )}
+                                    </AnimatePresence>
+
                                     <p className="text-[10px] uppercase tracking-widest text-black/40 font-mono italic">
                                         or Text Heeyoung at 408-375-3676
                                     </p>
