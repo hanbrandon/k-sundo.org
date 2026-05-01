@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://k-sundo.org'),
   title: "K-Sundo | The Energy Method Behind Peak Life",
   description: "Experience K-Sundo, a traditional Korean mind-body cultivation practice. Harmonize breathing, posture, and meditation for peak physical health, mental clarity, and inner peace.",
   openGraph: {
