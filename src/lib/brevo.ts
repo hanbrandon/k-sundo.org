@@ -17,11 +17,9 @@ export async function sendContactEmail(data: { name: string; email: string; mess
         name: process.env.BREVO_SENDER_NAME || "K-Sundo Website",
         email: process.env.BREVO_SENDER_EMAIL || "noreply@k-sundo.org"
       },
-      to: [
-        {
-          email: process.env.BREVO_RECEIVER_EMAIL || "hanbrandon@gmail.com",
-        }
-      ],
+      to: (process.env.BREVO_RECEIVER_EMAIL || "hanbrandon@gmail.com")
+        .split(',')
+        .map(email => ({ email: email.trim() })),
       subject: `New Contact Form Submission from ${data.name}`,
       htmlContent: `
         <div style="font-family: sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; border: 1px solid #eee; padding: 20px; border-radius: 10px;">
