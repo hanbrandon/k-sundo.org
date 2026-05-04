@@ -49,22 +49,12 @@ export default function Navbar() {
     >
       <Link 
         href="/"
-        className="cursor-pointer group flex items-center" 
+        className={`cursor-pointer group flex items-center font-serif text-2xl md:text-3xl font-bold tracking-tight hover:opacity-70 transition-opacity ${
+          hasHero ? 'text-white' : 'text-black'
+        }`} 
         id="brand-logo"
       >
-        {/* Mobile Logo */}
-        <img 
-          src="/logo-mobile.png" 
-          alt="K-Sundo Logo" 
-          className="h-10 w-auto object-contain md:hidden invert brightness-0"
-          style={{ filter: 'brightness(0) invert(1)' }}
-        />
-        {/* Desktop Logo */}
-        <img 
-          src={hasHero ? "/logo-white.png" : "/logo-black.png"} 
-          alt="K-Sundo Logo" 
-          className="hidden md:block h-12 w-auto object-contain hover:opacity-80 transition-opacity"
-        />
+        K-Sundo
       </Link>
 
       {/* Desktop Nav */}
