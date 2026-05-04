@@ -71,7 +71,7 @@ export default function Home() {
 
     const galleryItems = [
         {
-            title: 'Portola Valley',
+            title: 'K-Sundo Portola Valley',
             subtitle: 'Community Center',
             address: '765 Portola Rd, Portola Valley, CA 94028',
             schedule: 'Wednesdays, 6:00 PM – 8:30 PM',
@@ -83,7 +83,7 @@ export default function Home() {
             ],
         },
         {
-            title: 'Milpitas',
+            title: 'K-Sundo Milpitas',
             subtitle: 'Barbara Lee Senior Center',
             address: '40 N. Milpitas Blvd, Milpitas, CA 95035',
             schedule: 'Saturdays, 7:15 AM – 9:00 AM',
@@ -151,7 +151,7 @@ export default function Home() {
 
                 <div className="max-w-7xl mx-auto w-full pb-16 relative z-20">
                     <HeroTitle subtitle="Harmony of Body and Mind, a True Path to Healing">
-                        <span className="whitespace-nowrap">K-Sundo</span> Club
+                        <span className="whitespace-nowrap">K-Sundo</span>
                     </HeroTitle>
                 </div>
             </section>
@@ -163,8 +163,8 @@ export default function Home() {
                     Method) is a traditional Korean personal development
                     discipline designed to transform individuals into holistic
                     beings with a healthy body, peaceful mind, and enlightened
-                    spirit. Rooted in over 9,000 years of Eastern wisdom and
-                    aligned with the principles of natural creation and human
+                    spirit. Rooted in 9,800 years of Eastern wisdom and aligned
+                    with the principles of natural creation and human
                     physiology, this scientifically grounded practice combines
                     hundreds of meticulously crafted body movements and refined
                     breathing techniques through a systematic, progressive
@@ -327,14 +327,14 @@ export default function Home() {
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: '-100px' }}
-                            className="relative aspect-[16/8] w-full overflow-hidden group cursor-pointer rounded-sm"
+                            className="relative aspect-[16/13] md:aspect-[16/8] w-full overflow-hidden group cursor-pointer rounded-sm"
                         >
                             <ImageSlideshow images={item.images} />
                             <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-500 flex flex-col items-center justify-center text-white text-center px-6">
                                 <span className="text-[10px] uppercase tracking-[0.4em] mb-2 opacity-70 font-mono">
                                     {item.subtitle}
                                 </span>
-                                <h3 className="text-3xl md:text-5xl font-serif mb-3 md:mb-6">
+                                <h3 className="text-2xl md:text-5xl font-serif mb-3 md:mb-6 leading-tight max-w-[90%]">
                                     {item.title}
                                 </h3>
                                 <div className="space-y-1 md:space-y-2 mb-4 md:mb-8">
@@ -409,7 +409,11 @@ export default function Home() {
                                     href="/contact"
                                     className="w-full py-5 bg-black text-white border border-black/5 text-[10px] uppercase tracking-widest font-mono transition-all text-center rounded-sm flex items-center justify-center gap-2 group"
                                 >
-                                    Register Now <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                    Register Now{' '}
+                                    <ArrowUpRight
+                                        size={14}
+                                        className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                    />
                                 </Link>
                             </motion.div>
                         </div>
@@ -442,7 +446,11 @@ export default function Home() {
                                     href="/contact"
                                     className="w-full py-5 bg-black text-white border border-black/5 text-[10px] uppercase tracking-widest font-mono transition-all text-center rounded-sm flex items-center justify-center gap-2 group"
                                 >
-                                    Register Now <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                    Register Now{' '}
+                                    <ArrowUpRight
+                                        size={14}
+                                        className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                    />
                                 </Link>
                             </motion.div>
                         </div>

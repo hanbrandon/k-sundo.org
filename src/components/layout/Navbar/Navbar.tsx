@@ -11,10 +11,7 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
-  const hasHero = pathname === '/' || pathname === '/contact';
-
   const navItems = [
-    { name: 'Home', id: 'home', path: '/' },
     { name: 'About', id: 'about', path: '/#about' },
     { name: 'Benefits', id: 'benefits', path: '/#benefits' },
     { name: 'Method', id: 'method', path: '/#solutions' },
@@ -23,13 +20,12 @@ export default function Navbar() {
     { name: 'Testimonials', id: 'testimonials', path: '/#testimonials' },
   ];
 
-  const handleNavClick = (e: React.MouseEvent, item: typeof navItems[0]) => {
-    if (item.path.startsWith('/#')) {
+  const handleNavClick = (e: React.MouseEvent, path: string) => {
+    if (path.startsWith('/#')) {
       e.preventDefault();
-      const id = item.path.substring(2);
+      const id = path.substring(2);
       if (pathname !== '/') {
         router.push('/');
-        // Wait for navigation then scroll
         setTimeout(() => {
           const el = document.getElementById(id);
           el?.scrollIntoView({ behavior: 'smooth' });
@@ -41,6 +37,8 @@ export default function Navbar() {
     }
     setIsMenuOpen(false);
   };
+
+  const hasHero = pathname === '/' || pathname === '/contact' || pathname === '/founders-envision' || pathname === '/advisory-board';
 
   return (
     <nav 
@@ -54,10 +52,18 @@ export default function Navbar() {
         className="cursor-pointer group flex items-center" 
         id="brand-logo"
       >
+        {/* Mobile Logo */}
+        <img 
+          src="/logo-mobile.png" 
+          alt="K-Sundo Logo" 
+          className="h-10 w-auto object-contain md:hidden invert brightness-0"
+          style={{ filter: 'brightness(0) invert(1)' }}
+        />
+        {/* Desktop Logo */}
         <img 
           src={hasHero ? "/logo-white.png" : "/logo-black.png"} 
           alt="K-Sundo Logo" 
-          className="h-8 md:h-10 w-auto object-contain hover:opacity-80 transition-opacity"
+          className="hidden md:block h-12 w-auto object-contain hover:opacity-80 transition-opacity"
         />
       </Link>
 
@@ -67,9 +73,9 @@ export default function Navbar() {
           <FlipLink
             key={item.id}
             href={item.path}
-            onClick={(e) => handleNavClick(e, item)}
+            onClick={(e) => handleNavClick(e, item.path)}
             className={`text-[0.875em] leading-[1em] font-mono uppercase tracking-[2px] transition-all ${
-              (pathname === item.path || (pathname === '/' && item.id === 'home')) ? 'opacity-100' : 'opacity-50 hover:opacity-100'
+              pathname === item.path ? 'opacity-100' : 'opacity-50 hover:opacity-100'
             }`}
           >
             {item.name}
@@ -101,7 +107,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black text-white p-12 flex flex-col gap-10 items-start justify-center pointer-events-auto"
+            className="fixed inset-0 bg-black text-white p-12 pt-24 flex flex-col gap-10 items-start overflow-y-auto pointer-events-auto"
             id="mobile-menu"
           >
             {/* Close Button Top Right */}
@@ -115,7 +121,7 @@ export default function Navbar() {
               <FlipLink
                 key={item.id}
                 href={item.path}
-                onClick={(e) => handleNavClick(e, item)}
+                onClick={(e) => handleNavClick(e, item.path)}
                 className={`text-4xl md:text-6xl font-mono uppercase tracking-[4px] ${
                   pathname === item.path ? 'opacity-100' : 'opacity-40'
                 }`}
