@@ -214,8 +214,8 @@ export default function Home() {
                     </div>
 
                     {/* Right Column: Sticky Accordion */}
-                    <div className="md:w-[40%] flex flex-col pt-8 md:pt-32">
-                        <div className="sticky top-32 flex flex-col">
+                    <div className="md:w-[40%] flex flex-col pt-8 md:pt-32 relative">
+                        <div className="sticky top-32 flex flex-col z-10">
                             <div className="flex flex-col">
                                 {programBenefits.map((item, idx) => (
                                     <div

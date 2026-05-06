@@ -14,11 +14,11 @@ export default function AdvisoryBoard() {
         },
         {
             title: '2. Sports Science & Academic Support',
-            members: ['T.B.D.'],
+            members: ['Coming Soon'],
         },
         {
             title: '3. Medical & Scientific Consultation',
-            members: ['T.B.D.'],
+            members: ['Coming Soon'],
         },
     ];
 
