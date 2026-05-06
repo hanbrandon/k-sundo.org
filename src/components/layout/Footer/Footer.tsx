@@ -85,8 +85,8 @@ export default function Footer() {
                         </Link>
                     </div>
 
-                    <div className="flex flex-col gap-8">
-                        <span className="text-[14px] uppercase tracking-widest text-white/80 block font-mono">Explore</span>
+                    <div className="flex flex-col gap-6">
+                        <span className="text-[13px] uppercase tracking-[0.2em] text-white font-bold block font-mono">Explore</span>
                         <div className="flex flex-col gap-4">
                             {[
                                 { name: 'About', path: '/#about' },
@@ -99,7 +99,7 @@ export default function Footer() {
                                 <Link 
                                     key={link.name}
                                     href={link.path} 
-                                    className="text-[14px] text-white/60 hover:text-white transition-colors font-mono uppercase tracking-wider"
+                                    className="text-[14px] text-white/50 hover:text-white transition-colors font-mono uppercase tracking-wider"
                                 >
                                     {link.name}
                                 </Link>
@@ -107,27 +107,27 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-8">
-                        <span className="text-[14px] uppercase tracking-widest text-white/80 block font-mono">Vision & Leadership</span>
+                    <div className="flex flex-col gap-6">
+                        <span className="text-[13px] uppercase tracking-[0.2em] text-white font-bold block font-mono">Vision & Leadership</span>
                         <div className="flex flex-col gap-4">
                             <Link 
                                 href="/founders-envision" 
-                                className="text-[14px] text-white/60 hover:text-white transition-colors font-mono uppercase tracking-wider"
+                                className="text-[14px] text-white/50 hover:text-white transition-colors font-mono uppercase tracking-wider"
                             >
                                 Founder&apos;s Envision
                             </Link>
                             <Link 
                                 href="/advisory-board" 
-                                className="text-[14px] text-white/60 hover:text-white transition-colors font-mono uppercase tracking-wider"
+                                className="text-[14px] text-white/50 hover:text-white transition-colors font-mono uppercase tracking-wider"
                             >
                                 Advisory Board
                             </Link>
                         </div>
                     </div>
 
-                    <div className="flex flex-col gap-8">
-                        <div className="text-[14px] text-white/60 font-mono leading-relaxed uppercase">
-                            <span className="text-[14px] uppercase tracking-widest text-white/80 block font-bold mb-2">
+                    <div className="flex flex-col gap-6">
+                        <div className="text-[14px] text-white/50 font-mono leading-relaxed uppercase">
+                            <span className="text-[13px] uppercase tracking-[0.2em] text-white font-bold block mb-4">
                                 Headquarters
                             </span>
                             Silicon Valley, California
