@@ -47,17 +47,17 @@ export default function FoundersEnvision() {
                         <div className="w-48 md:w-64 float-left mr-8 mb-6 md:mb-10">
                             <div className="aspect-square bg-black/5 rounded-sm overflow-hidden border border-black/5 relative">
                                 <img
-                                    src="/founders/heeyoung-pyun.png"
-                                    alt="Heeyoung Pyun"
+                                    src="/founders/heeyoung-pyen.png"
+                                    alt="Heeyoung Pyen"
                                     className="w-full h-full object-cover"
                                 />
                                 {/* Name/Title Overlay */}
                                 <div className="absolute bottom-0 right-0 p-4 text-right bg-gradient-to-t from-black/40 to-transparent w-full">
                                     <h3 className="font-serif text-sm md:text-base font-bold text-white mb-0">
-                                        Heeyoung Pyun
+                                        Heeyoung Pyen
                                     </h3>
                                     <p className="font-mono text-[8px] md:text-[9px] uppercase tracking-[0.1em] text-white/80">
-                                        Founder of K-Sundo
+                                        Susa / Founder of K-Sundo™
                                     </p>
                                 </div>
                             </div>

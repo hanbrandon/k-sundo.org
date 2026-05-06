@@ -86,7 +86,9 @@ export default function Footer() {
                     </div>
 
                     <div className="flex flex-col gap-6">
-                        <span className="text-[13px] uppercase tracking-[0.2em] text-white font-bold block font-mono">Explore</span>
+                        <span className="text-[13px] uppercase tracking-[0.2em] text-white font-bold block font-mono">
+                            Explore
+                        </span>
                         <div className="flex flex-col gap-4">
                             {[
                                 { name: 'About', path: '/#about' },
@@ -94,11 +96,14 @@ export default function Footer() {
                                 { name: 'Method', path: '/#solutions' },
                                 { name: 'Locations', path: '/#experience' },
                                 { name: 'Pricing', path: '/#pricing' },
-                                { name: 'Testimonials', path: '/#testimonials' },
+                                {
+                                    name: 'Testimonials',
+                                    path: '/#testimonials',
+                                },
                             ].map((link) => (
-                                <Link 
+                                <Link
                                     key={link.name}
-                                    href={link.path} 
+                                    href={link.path}
                                     className="text-[14px] text-white/50 hover:text-white transition-colors font-mono uppercase tracking-wider"
                                 >
                                     {link.name}
@@ -108,16 +113,18 @@ export default function Footer() {
                     </div>
 
                     <div className="flex flex-col gap-6">
-                        <span className="text-[13px] uppercase tracking-[0.2em] text-white font-bold block font-mono">Vision & Leadership</span>
+                        <span className="text-[13px] uppercase tracking-[0.2em] text-white font-bold block font-mono">
+                            Vision & Leadership
+                        </span>
                         <div className="flex flex-col gap-4">
-                            <Link 
-                                href="/founders-envision" 
+                            <Link
+                                href="/founders-envision"
                                 className="text-[14px] text-white/50 hover:text-white transition-colors font-mono uppercase tracking-wider"
                             >
                                 Founder&apos;s Envision
                             </Link>
-                            <Link 
-                                href="/advisory-board" 
+                            <Link
+                                href="/advisory-board"
                                 className="text-[14px] text-white/50 hover:text-white transition-colors font-mono uppercase tracking-wider"
                             >
                                 Advisory Board
@@ -137,7 +144,7 @@ export default function Footer() {
                             <br />
                             Email: threepillars.fdn@gmail.com
                             <br />
-                            Phone: 408-375-3676 (Susa Heeyoung Pyun)
+                            Phone: 408-375-3676 (Heeyoung Pyen)
                         </div>
                     </div>
                 </div>
@@ -145,7 +152,7 @@ export default function Footer() {
                 <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                     <div className="flex flex-col gap-2">
                         <p className="text-[14px] uppercase tracking-widest text-white/80 font-mono text-center md:text-left">
-                            © 2026 K-Sundo. All Rights Reserved.
+                            © 2026 K-Sundo™. All Rights Reserved.
                         </p>
                         <p className="text-[14px] uppercase tracking-widest text-white/60 font-mono text-center md:text-left">
                             K-Sundo™ is a trademark of Three Pillars Foundation.

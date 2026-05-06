@@ -54,7 +54,7 @@ export default function Navbar() {
         }`} 
         id="brand-logo"
       >
-        K-Sundo
+        K-Sundo<span className="text-[0.4em] ml-0 relative -top-[0.7em]">™</span>
       </Link>
 
       {/* Desktop Nav */}

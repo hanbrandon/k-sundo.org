@@ -151,7 +151,12 @@ export default function Home() {
 
                 <div className="max-w-7xl mx-auto w-full pb-16 relative z-20">
                     <HeroTitle subtitle="Harmony of Body and Mind, a True Path to Healing">
-                        <span className="whitespace-nowrap">K-Sundo</span>
+                        <span className="whitespace-nowrap">
+                            K-Sundo
+                            <span className="text-[0.25em] inline-block -translate-y-[2.0em]">
+                                ™
+                            </span>
+                        </span>
                     </HeroTitle>
                 </div>
             </section>

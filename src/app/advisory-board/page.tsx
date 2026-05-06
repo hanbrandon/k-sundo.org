@@ -78,7 +78,7 @@ export default function AdvisoryBoard() {
                         className="mt-48 pt-16 border-t border-black/10 text-center"
                     >
                         <p className="text-black/40 text-[11px] md:text-xs uppercase tracking-[0.3em] font-mono max-w-3xl mx-auto leading-relaxed">
-                            The K-Sundo Advisory Board serves under the Three
+                            The K-Sundo™ Advisory Board serves under the Three
                             Pillars Foundation to ensure the highest standard of
                             training and scientific integration.
                         </p>
