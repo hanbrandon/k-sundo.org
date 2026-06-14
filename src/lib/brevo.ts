@@ -17,6 +17,10 @@ export async function sendContactEmail(data: { name: string; email: string; mess
         name: process.env.BREVO_SENDER_NAME || "K-Sundo Website",
         email: process.env.BREVO_SENDER_EMAIL || "noreply@k-sundo.org"
       },
+      replyTo: {
+        name: data.name,
+        email: data.email
+      },
       to: (process.env.BREVO_RECEIVER_EMAIL || "hanbrandon@gmail.com")
         .split(',')
         .map(email => ({ email: email.trim() })),
