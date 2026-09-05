@@ -73,12 +73,32 @@ export default function RegisterForm() {
                 <label htmlFor="register-note" className={labelClass}>Anything we should know?</label>
                 <textarea id="register-note" rows={3} className={`${fieldClass} resize-none`} placeholder="Questions, accessibility needs, or a note for the team" value={form.note} onChange={(event) => setForm({ ...form, note: event.target.value })} />
             </div>
-            <button type="submit" disabled={status === 'loading'} className="w-full flex items-center justify-between bg-black text-white rounded-sm px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em] hover:bg-brand-accent disabled:opacity-50 transition-colors">
-                {status === 'loading' ? <>Sending registration <Loader2 size={16} className="animate-spin" /></> : <>Register by email <ArrowUpRight size={16} /></>}
+            <button
+                type="submit"
+                disabled={status === 'loading' || status === 'success'}
+                className={`w-full flex items-center justify-between rounded-sm px-6 py-5 font-mono text-[11px] uppercase tracking-[0.2em] text-white transition-colors disabled:cursor-not-allowed ${status === 'success' ? 'bg-green-700' : status === 'error' ? 'bg-red-700 hover:bg-red-800' : 'bg-black hover:bg-brand-accent'}`}
+            >
+                {status === 'loading' && <>Sending registration <Loader2 size={16} className="animate-spin" /></>}
+                {status === 'success' && <>Registration sent <CheckCircle2 size={16} /></>}
+                {status === 'error' && <>Try again <AlertCircle size={16} /></>}
+                {status === 'idle' && <>Register by email <ArrowUpRight size={16} /></>}
             </button>
-            <div aria-live="polite" className="min-h-5">
-                {status === 'success' && <p className="flex items-center gap-2 text-sm text-green-700"><CheckCircle2 size={16} /> Thank you. Your registration has been sent.</p>}
-                {status === 'error' && <p className="flex items-center gap-2 text-sm text-red-700"><AlertCircle size={16} /> We could not send your registration. Please try again or text us.</p>}
+            <div aria-live="assertive" role="status">
+                {status === 'loading' && (
+                    <p className="border border-black/10 bg-brand-muted px-5 py-4 text-sm">Please wait while we send your registration…</p>
+                )}
+                {status === 'success' && (
+                    <div className="border border-green-700/30 bg-green-50 px-5 py-4 text-green-800">
+                        <p className="flex items-center gap-2 font-medium"><CheckCircle2 size={18} /> Registration sent successfully</p>
+                        <p className="mt-2 text-sm">Thank you. The K-Sundo team received your registration by email.</p>
+                    </div>
+                )}
+                {status === 'error' && (
+                    <div className="border border-red-700/30 bg-red-50 px-5 py-4 text-red-800">
+                        <p className="flex items-center gap-2 font-medium"><AlertCircle size={18} /> Registration was not sent</p>
+                        <p className="mt-2 text-sm">Please try again or text HeeYoung at 408-375-3676.</p>
+                    </div>
+                )}
             </div>
         </form>
     );
