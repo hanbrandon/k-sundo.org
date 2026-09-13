@@ -3,7 +3,7 @@
 import { FormEvent, useState } from 'react';
 import { AlertCircle, ArrowUpRight, CheckCircle2, Loader2 } from 'lucide-react';
 
-const initialForm = { name: '', email: '', phone: '', attendance: 'Both days — September 21 & 22, 2026', note: '' };
+const initialForm = { name: '', email: '', phone: '', attendance: 'Both days — September 21 & 22, 2026', note: '', liabilityAccepted: false };
 
 const attendanceOptions = [
     'Both days — September 21 & 22, 2026',
@@ -27,7 +27,7 @@ export default function RegisterForm() {
                     name: form.name,
                     email: form.email,
                     phone: form.phone,
-                    message: `[2026 Annual Workshop Registration]\nAttendance: ${form.attendance}\n\nNotes: ${form.note || 'None'}`,
+                    message: `[2026 Annual Workshop Registration]\nAttendance: ${form.attendance}\nLiability waiver: Accepted\n\nNotes: ${form.note || 'None'}`,
                 }),
             });
 
@@ -72,6 +72,22 @@ export default function RegisterForm() {
             <div>
                 <label htmlFor="register-note" className={labelClass}>Anything we should know?</label>
                 <textarea id="register-note" rows={3} className={`${fieldClass} resize-none`} placeholder="Questions, accessibility needs, or a note for the team" value={form.note} onChange={(event) => setForm({ ...form, note: event.target.value })} />
+            </div>
+            <div className="border-t border-black/10 pt-7">
+                <p className={`${labelClass} mb-4`}>Liability waiver *</p>
+                <label htmlFor="liability-waiver" className="group flex cursor-pointer items-start gap-4">
+                    <input
+                        id="liability-waiver"
+                        type="checkbox"
+                        required
+                        checked={form.liabilityAccepted}
+                        onChange={(event) => setForm({ ...form, liabilityAccepted: event.target.checked })}
+                        className="mt-1 size-5 shrink-0 cursor-pointer accent-black"
+                    />
+                    <span className="text-sm leading-relaxed text-black/65 group-hover:text-black/80 transition-colors">
+                        I understand that the K-Sundo workshop involves physical movement and exercise and may carry a risk of injury. I voluntarily choose to participate, assume all associated risks, and release K-Sundo, Three Pillars Foundation, its instructors, organizers, and the venue from claims or liability arising from my participation, except where prohibited by law.
+                    </span>
+                </label>
             </div>
             <button
                 type="submit"
